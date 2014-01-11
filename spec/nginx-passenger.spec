@@ -1,5 +1,5 @@
 %define nginx_name      nginx
-%define nginx_version   0.7.65
+%define nginx_version   1.5.8
 %define nginx_user      nginx
 %define nginx_group     %{nginx_user}
 %define nginx_home      %{_localstatedir}/lib/nginx
@@ -8,7 +8,7 @@
 %define nginx_confdir   %{_sysconfdir}/nginx
 %define nginx_datadir   %{_datadir}/nginx
 %define nginx_webroot   %{nginx_datadir}/html
-%define passenger_version   2.2.11
+%define passenger_version   4.0.33
 
 Name:           nginx-passenger
 Version:        %{nginx_version}+%{passenger_version}
@@ -96,8 +96,10 @@ export DESTDIR=%{buildroot}
     --lock-path=%{_localstatedir}/lock/subsys/%{nginx_name} \
     --with-http_ssl_module \
     --with-http_gzip_static_module \
-    --with-mail \
-    --with-mail_ssl_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_sub_module \
+    --with-http_stub_status_module \
     --with-ipv6 \
     --add-module=`passenger-config --root`/ext/nginx
 make %{?_smp_mflags}
@@ -172,6 +174,10 @@ fi
 %config(noreplace) %{nginx_confdir}/fastcgi_params.default
 %config(noreplace) %{nginx_confdir}/koi-win
 %config(noreplace) %{nginx_confdir}/koi-utf
+%config(noreplace) %{nginx_confdir}/scgi_params
+%config(noreplace) %{nginx_confdir}/scgi_params.default
+%config(noreplace) %{nginx_confdir}/uwsgi_params
+%config(noreplace) %{nginx_confdir}/uwsgi_params.default
 %config(noreplace) %{nginx_confdir}/%{nginx_name}.conf
 %config(noreplace) %{nginx_confdir}/mime.types
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{nginx_name}
@@ -181,6 +187,9 @@ fi
 
 
 %changelog
+* Sat Jan 11 2014 Clinton Blackburn - 1.5.8
+- updated to latest stable
+
 * Mon May 10 2010 Brad Fults <brad at causes dot com> - 0.7.65-2
 - Update to new stable 0.7.65
 - Add in Passenger module compilation

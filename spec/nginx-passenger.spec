@@ -1,5 +1,5 @@
 %define nginx_name      nginx
-%define nginx_version   1.5.8
+%define nginx_version   1.5.9
 %define nginx_user      nginx
 %define nginx_group     %{nginx_user}
 %define nginx_home      %{_localstatedir}/lib/nginx
@@ -8,7 +8,7 @@
 %define nginx_confdir   %{_sysconfdir}/nginx
 %define nginx_datadir   %{_datadir}/nginx
 %define nginx_webroot   %{nginx_datadir}/html
-%define passenger_version   4.0.33
+%define passenger_version   4.0.36
 
 Name:           nginx-passenger
 Version:        %{nginx_version}+%{passenger_version}
@@ -187,6 +187,10 @@ fi
 
 
 %changelog
+* Sat Jan 25 2014 Clinton Blackburn - 1.5.9
+- Updated to Nginx 1.5.9
+- Updated to Passenger 4.0.36
+
 * Sat Jan 11 2014 Clinton Blackburn - 1.5.8
 - updated to latest stable
 

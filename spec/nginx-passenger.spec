@@ -46,7 +46,7 @@ proxy server written by Igor Sysoev.
 
 %patch0 -p1
 
-%{__cat} <<EOF >%{nginx_name}.logrotate
+%{__cat} <<'EOF' >%{nginx_name}.logrotate
 %{nginx_logdir}/*log {
     daily
     rotate 10
@@ -55,7 +55,7 @@ proxy server written by Igor Sysoev.
     compress
     sharedscripts
     postrotate
-        [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat %{_localstatedir}/run/%{nginx_name}.pid`
+        [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
     endscript
 }
 EOF

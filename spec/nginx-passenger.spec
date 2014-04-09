@@ -187,6 +187,9 @@ fi
 
 
 %changelog
+* Tue Apr 08 2014 Sam Hitov - 1.5.9-2
+- Fix logrotate for Nginx in spec file
+
 * Sat Jan 25 2014 Clinton Blackburn - 1.5.9
 - Updated to Nginx 1.5.9
 - Updated to Passenger 4.0.36

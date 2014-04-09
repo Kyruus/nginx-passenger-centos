@@ -16,7 +16,7 @@ Perform the following on a build box as root.
 
 ## Install Prerequisites for Nginx + Passenger RPM Creation
     yum groupinstall 'Development Tools'
-    yum install ruby-devel openssl-devel zlib-devel pcre-devel rubygems git
+    yum install ruby-devel openssl-devel zlib-devel pcre-devel libcurl-devel rubygems git
     gem install passenger -v 4.0.36
 
 Hereafter, this process assumes that `passenger-config --root` returns a
